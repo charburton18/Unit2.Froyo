@@ -40,36 +40,36 @@ The user enters vanilla,vanilla,vanilla,strawberry,coffee,coffee
 console.table(userOrder) is used to display a table in the console which shows each flavor and a number of scoops per flavor.
 */
 // prompt the user to enter a list of comma-separated froyo flavors:
-let userScoops = prompt('Please enter a list of comma-separated froyo flavors', 'vanilla,strawberry,banana,strawberry,coffee');
+// let userScoops = prompt('Please enter a list of comma-separated froyo flavors', 'vanilla,strawberry,banana,strawberry,coffee');
 
-// split the user input into an array
-userScoops = userScoops.split(',');
+// // split the user input into an array
+// userScoops = userScoops.split(',');
 
-let numVanilla = 0;
-let numStrawberry = 0;
-let numCoffee = 0; 
-let numOther = 0;
-const getNumEachScoop = (scoops) => {
-  for(let i = 0; i < scoops.length; i++) {
-    if (scoops[i] === 'vanilla') {
-      numVanilla += 1;
-    } else if (scoops[i] === 'strawberry') {
-      numStrawberry += 1;
-    } else if (scoops[i] === 'coffee') {
-      numCoffee += 1;
-    } else {
-      numOther += 1;
-    }
-  }
-  let numScoopObj = {
-    vanilla: numVanilla, 
-    strawberry: numStrawberry, 
-    coffee: numCoffee, 
-    other: numOther,
-  };
-  return numScoopObj;
-}
-console.table(getNumEachScoop(userScoops));
+// let numVanilla = 0;
+// let numStrawberry = 0;
+// let numCoffee = 0; 
+// let numOther = 0;
+// const getNumEachScoop = (scoops) => {
+//   for(let i = 0; i < scoops.length; i++) {
+//     if (scoops[i] === 'vanilla') {
+//       numVanilla += 1;
+//     } else if (scoops[i] === 'strawberry') {
+//       numStrawberry += 1;
+//     } else if (scoops[i] === 'coffee') {
+//       numCoffee += 1;
+//     } else {
+//       numOther += 1;
+//     }
+//   }
+//   let numScoopObj = {
+//     vanilla: numVanilla, 
+//     strawberry: numStrawberry, 
+//     coffee: numCoffee, 
+//     other: numOther,
+//   };
+//   return numScoopObj;
+// }
+// console.table(getNumEachScoop(userScoops));
 
 
 // Jon says this answer is ok, but the keys are hardcoded. I want to make another version where the user can create new flavors.
@@ -78,3 +78,32 @@ console.table(getNumEachScoop(userScoops));
 // Want to identify UNIQUE elements in the array?
 // use filter() to create a new array filled with elements that pass a test provided by a function?
 
+let userScoops = prompt('Please enter a list of comma-separated froyo flavors', 'vanilla,strawberry,banana,strawberry,coffee');
+
+// split the user input into an array
+userScoops = userScoops.split(',');
+
+//names of scoops
+// count how many scoops have that name
+
+
+
+const getNumEachScoop = (scoops) => {
+  // loop through an empty object
+  const scoopObj = {};
+  for(let i = 0; i < scoops.length; i++) {
+    const flavorName = scoops[i];
+  // if it exists in the object
+    if(scoopObj[flavorName] === undefined) {
+    // add it to the obj with a default value of 1
+      scoopObj[flavorName] = 1;
+      
+    // if it does exist
+    } else {
+    // add one to the count
+    scoopObj[flavorName]++; 
+    }
+  }
+return scoopObj;
+}
+console.table(getNumEachScoop(userScoops));
